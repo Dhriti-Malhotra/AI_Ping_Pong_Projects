@@ -1,4 +1,7 @@
 status = "";
+wristX = [];
+wristY = [];
+scoreRightWrist = "";
 
 var paddle2 =10,paddle1=10;
 
@@ -34,7 +37,14 @@ function modelLoaded()
   console.log("Model Loaded!")
 }
 
-function draw(){
+function draw()
+{
+  if(scoreRightWrist > 0.2)
+  {
+    fill("#d8bfd8");
+    stroke("#000000");
+    circle(200, 350, 10);
+  }
 
  background(0); 
 
@@ -180,4 +190,15 @@ function startGame()
 function restart()
 {
 
+}
+
+function gotPoses(results)
+{
+  if(strength.length > 0)
+  {
+    console.log(results);
+    rightWristX = results[0].pose.x;
+    rightWristY = results[0].pose.y;
+    scoreRightWrist("noseX = " + noseX + "noseY = " + noseY);
+  }
 }
